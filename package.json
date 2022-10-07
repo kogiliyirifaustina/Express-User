@@ -1,0 +1,16 @@
+{
+  "name": "local-server",
+  "version": "1.0.0",
+  "description": "my local server",
+  "main": "index.js",
+  "scripts": {
+    "test": "server is working"
+  },
+  "author": "tina",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2"
+  }
+}
