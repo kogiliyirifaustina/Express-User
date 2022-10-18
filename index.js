@@ -10,17 +10,16 @@ dotenv.config();
 
 
 const port = process.env.PORT || 8000;
-const db = process.env.DB_LOCAL;
-
-
-app.get('/', (req, res) => {
-    res.send('This is my homepage')
-})
+// const db = process.env.DB_LOCAL;
+const dbonline = process.env.DB_ONLINE;
 
 
 
 
-mongoose.connect(db, {
+
+
+
+mongoose.connect(dbonline, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() =>{
