@@ -28,7 +28,7 @@ mongoose.connect(dbonline, {
     console.log(err)
 });
 
-app.get('/', () => {
+app.get('/', (req, res) => {
     res.send('Welcome honurable guest');
 });
 
