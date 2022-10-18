@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 const app = express('');
 app.use(express.json()),
-dotenv.config();
+    dotenv.config();
 
 
 const port = process.env.PORT || 8000;
@@ -22,9 +22,9 @@ const dbonline = process.env.DB_ONLINE;
 mongoose.connect(dbonline, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() =>{
+}).then(() => {
     console.log('Database connected successfully');
-}).catch((err) =>{
+}).catch((err) => {
     console.log(err)
 });
 
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
     res.send('Welcome honurable guest');
 });
 
-app.post('/register', async(req, res) => {
+app.post('/register', async (req, res) => {
     const { name, dob, phoneNumber, email, password } = req.body;
 
     const user = await User.create({
@@ -49,7 +49,7 @@ app.post('/register', async(req, res) => {
             message: 'User was created',
             data: user
         })
-    } else{
+    } else {
         res.status(400).json({
             status: false,
             message: 'Something went wrong'
@@ -58,17 +58,17 @@ app.post('/register', async(req, res) => {
 });
 
 
-app.get('/fetch', async(req, res) =>{
+app.get('/fetch', async (req, res) => {
     const users = await User.find()
 
 
-    if(users){
+    if (users) {
         res.status(200).json({
-           status: true,
-           message: 'You are a genuis',
-           data: users 
+            status: true,
+            message: 'You are a genuis',
+            data: users
         })
-    } else{
+    } else {
         res.status(404).json({
             status: false,
             message: 'You are lost'
@@ -78,10 +78,10 @@ app.get('/fetch', async(req, res) =>{
 
 
 
-app.delete('/remove/:id', async(req, res)=>{
+app.delete('/remove/:id', async (req, res) => {
     const user = await User.findByIdAndDelete(req.params.id)
 
-    if (user){
+    if (user) {
         res.status(200).json({
             status: true,
             message: 'User has been deleted succesfully',
@@ -96,19 +96,19 @@ app.delete('/remove/:id', async(req, res)=>{
 });
 
 
-app.put('/add/:id', async(req, res)=>{
-    const {id} = req.params;
+app.put('/add/:id', async (req, res) => {
+    const { id } = req.params;
     const changes = req.body;
 
-    const user = await User.updateOne(changes).where({_id: id});
+    const user = await User.updateOne(changes).where({ _id: id });
 
-    if(user){
+    if (user) {
         res.status(200).json({
             status: true,
             message: "Updated",
             data: user
         })
-    }else {
+    } else {
         res.status(400).json({
             status: false,
             message: "Sorry something went wrong",
@@ -119,19 +119,19 @@ app.put('/add/:id', async(req, res)=>{
 
 
 
-app.patch('/edit/:id', async(req, res)=>{
-    const {id} = req.params;
+app.patch('/edit/:id', async (req, res) => {
+    const { id } = req.params;
     const changes = req.body;
 
-    const user = await User.updateOne(changes).where({_id: id});
+    const user = await User.updateOne(changes).where({ _id: id });
 
-    if(user){
+    if (user) {
         res.status(200).json({
             status: true,
             message: "Updated",
             data: user
         })
-    }else {
+    } else {
         res.status(400).json({
             status: false,
             message: "Sorry something went wrong",
@@ -170,6 +170,6 @@ app.patch('/edit/:id', async(req, res)=>{
 
 
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log(`listening on port ${port}`)
 })
