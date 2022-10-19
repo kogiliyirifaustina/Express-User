@@ -2,11 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./Schemas/userSchema');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
+const cors = require('cors'); 
 
 
-const app = express('');
-app.use(express.json()),
-    dotenv.config();
+const app = express ('');
+app.use (express.json());
+app.use (express.urlencoded({extended: false}));
+app.use (express.static(__dirname));
+app.use (cors());
+
+dotenv.config();
 
 
 const port = process.env.PORT || 8000;
@@ -32,30 +38,77 @@ app.get('/', (req, res) => {
     res.send('Welcome honurable guest');
 });
 
-app.post('/register', async (req, res) => {
-    const { name, dob, phoneNumber, email, password } = req.body;
 
-    const user = await User.create({
-        name,
-        dob,
-        phoneNumber,
-        email,
-        password
-    });
 
-    if (user) {
-        res.status(201).json({
-            status: true,
-            message: 'User was created',
-            data: user
-        })
-    } else {
-        res.status(400).json({
-            status: false,
-            message: 'Something went wrong'
-        })
+
+
+app.post('/register', async(req, res) => {
+    
+    try {
+
+        const salt = await bcrypt.genSalt();
+
+        const password = await bcrypt.hash(req.body.password, salt);
+
+        const { name, dob, gender, phoneNumber, email } = req.body;
+
+
+        const user = await User.create({
+            name,
+            dob,
+            gender,
+            phoneNumber,
+            email,
+            password
+        });
+    
+        if (user) {
+            res.status(201).json({
+                status: true,
+                message: 'User was created successfully',
+                data: person
+            })
+        } else{
+            res.status(400).json({
+                status: false,
+                message: 'Something went wrong'
+            })
+        }
+
+    }catch(err){
+        console.log(err)
     }
 });
+
+
+
+
+
+// app.post('/register', async (req, res) => {
+//     const { name, dob, phoneNumber, email, password } = req.body;
+
+//     const user = await User.create({
+//         name,
+//         dob,
+//         gender,
+//         phoneNumber,
+//         email,
+//         password
+//     });
+
+//     if (user) {
+//         res.status(201).json({
+//             status: true,
+//             message: 'User was created',
+//             data: user
+//         })
+//     } else {
+//         res.status(400).json({
+//             status: false,
+//             message: 'Something went wrong'
+//         })
+//     }
+// });
 
 
 app.get('/fetch', async (req, res) => {
@@ -166,6 +219,27 @@ app.patch('/edit/:id', async (req, res) => {
 // });
 
 
+
+app.post("/login", async(req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    User.findOne({email}).then((user) => {
+        if(!user) return res.status(400).json({message: "Invalid Email"});
+
+
+        bcrypt.compare(password, user.password, (err, data)=>{
+            if(err) return err;
+
+
+            if(data){
+                res.status(200).json({message: " Welcome back"})
+            } else{
+                res.status(400).json({message: "Invalid Password"})
+            }
+        })
+    });
+});
 
 
 

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+
+        /* body{
+            background-image: url(images/contact.jpeg);
+            background-position: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        header {
+            width: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 1%;
+            position: absolute;
+            top: 0;
+            
+            
+        }
+
+        .logo {
+            margin-left: 10%;
+        }
+
+        .logo img{
+            width: 50%;
+            
+        }
+
+        .logo a{
+            text-decoration: none;
+        }
+
+        header ul {
+            display: flex;
+            
+        }
+
+        header ul li {
+            list-style: none;
+            margin-right: 40px;
+        }
+
+        header ul li a {
+            text-decoration: none;
+            color: black;
+        } */
+
+
+        form {
+            background-color: rgb(62, 71, 76, 0.9);
+            color: white;
+            width: 30%;
+            margin-top: 5%;
+            margin-left: 30%;
+            padding: 20px;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        input{
+            width: 100%;
+            padding: 12px 20px;
+            margin: 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        } 
+
+        #gender{
+            width: 5%;
+        }
+
+        #submit {
+            width: 20%; 
+            background-color: tomato;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #submit:hover{
+            background-color: black;
+            color: tomato;
+        }
+
+        /* .black {
+                background-color: black;
+                color: white;
+                height: 60%;
+                display: flex;
+                margin-top: 2%;
+            }
+
+            .contact{
+                justify-content: left;
+                margin-left: 10%;
+                margin-top: 3%;
+            }
+
+            .contact ul {
+                display: flex;
+                justify-content: space-between;
+                list-style: none;
+            }
+
+            .contact ul a{
+                text-decoration: none;
+                color: white;
+            }
+
+            .contact ul a:hover {
+                color: tomato;
+            }
+
+            .contact h3, p, img {
+                margin-left: 10%;
+                padding: 5px;
+            }
+
+            .black p{
+                color: rgb(255, 255, 255, 0.4);
+            }
+
+            
+
+            .connect{
+                margin-left: 20%;
+                margin-top: 10%;
+            }
+
+            .connect ul{
+                display: flex;
+                list-style: none;
+            }
+
+            .connect a{
+                color: tomato;
+                margin-right: 20px;
+                justify-items: left;
+            }
+
+            .connect a:hover{
+                color: white;
+            } */
+    </style>
+</head>
+<body>
+    <form action="/register" method="post">
+            <label for="name">Full Name</label>
+            <input type="text" name="name" id="name" placeholder="your fullname here"> 
+    
+            <label for="dob">Date Of Birth:</label>
+            <input type="date" id="dob" name="dob">
+    
+    
+            <label for="gender">Gender</label><br>
+            <input type="radio" id="gender" name="gender" value="male">
+            <label for="male">Male</label> 
+            <input type="radio" id="gender" name="gender" value="female">
+            <label for="female">Female</label> 
+            <input type="radio" id="gender" name="gender" value="Other">
+            <label for="other">Other</label><br> <br> 
+    
+    
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="233-451-678-1234">
+      
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="your email address here">
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="your password here">
+    
+    
+            
+    
+        
+            <button id="submit">REGISTER</button>
+        
+            
+            <h3>Already have an account?</h3>
+            <a href="login.html">log in</a>
+        
+    </form>
+    
+
+    
+    
+</body>
+</html>
